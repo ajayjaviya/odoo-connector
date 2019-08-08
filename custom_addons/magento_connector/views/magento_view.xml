@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_magento_root" name="Magento" sequence="10"/>
+
+    <record id="view_magento_instance_form" model="ir.ui.view">
+        <field name="name">Magento Instance</field>
+        <field name="model">magento.instance</field>
+        <field name="arch" type="xml">
+            <form string="Magento Instance">
+                <header>
+                    <button name="import_store" string="Load Magento Store"
+                            type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group string="Authentication">
+                        <group>
+                            <field name="location" placeholder="http://www.magento.com"/>
+                        </group>
+                        <group>
+                            <field name="access_token"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sync Product">
+                            <group colspan="6" col="3">
+                                <button name="import_category" string="Import Categories" type="object"
+                                        class="btn-primary"/>
+                                <button name="import_products" string=" Import Product" type="object"
+                                        class="btn-primary"/>
+                                <button name="import_image" string=" Import Images" type="object" class="btn-primary"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_magento_instance_tree" model="ir.ui.view">
+        <field name="name">magento.instance.tree</field>
+        <field name="model">magento.instance</field>
+        <field name="arch" type="xml">
+            <tree string="Magento Instance">
+                <field name="name"/>
+                <field name="location"/>
+                <field name="access_token"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_magento_instance" model="ir.actions.act_window">
+        <field name="name">Magento Instances</field>
+        <field name="res_model">magento.instance</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_magento_instance"
+              name="Magento Instance"
+              parent="menu_magento_root"
+              action="action_magento_instance"/>
+</odoo>
