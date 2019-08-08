@@ -19,10 +19,14 @@ class MagentoInstance(models.Model):
     stock_location_id = fields.Many2one('stock.location',
                                         string='Stock Location')
 
-    def magento_api(self, url):
+    def magento_api(self, url, method="GET", vals=None):
         url = '%s%s' % (self.location, url)
         headers = {'authorization': 'Bearer %s' % self.access_token}
-        return requests.request('GET', url, headers=headers)
+        if method == 'POST':
+            response = requests.request(method, url, data=json.dumps(vals), headers=headers)
+        else:
+            response = requests.request(method, url, headers=headers)
+        return response
 
     @api.multi
     def import_store(self):
@@ -77,6 +81,31 @@ class MagentoInstance(models.Model):
                 })
 
     @api.multi
+    def import_attribute_set(self):
+        MagentoProductAttributeSet = self.env['magento.product.attribute.set']
+        response = self.magento_api("rest/V1/products/attribute-sets/sets/list?searchCriteria=0")
+        stores = self.env['magento.store'].search([])
+        if response.ok:
+            for store in stores:
+                attributes = response.json().get('items')
+                for attribute in attributes:
+                    val = {
+                        'name': attribute['attribute_set_name'],
+                        'code': attribute['attribute_set_id'],
+                        'shop_id': store.id,
+                        'sort_order': attribute['sort_order'],
+                        'entity_type_id': attribute['entity_type_id'],
+                        'magento_instance_id': self.id,
+                    }
+                    attribute_set = MagentoProductAttributeSet.search(
+                        [('name', '=', attribute['attribute_set_name']), ('magento_instance_id', '=', self.id)])
+                    if attribute_set:
+                        attribute_set.write(val)
+                    else:
+                        MagentoProductAttributeSet.create(val)
+        return True
+
+    @api.multi
     def import_category(self):
         try:
             shops = self.env['magento.store'].search([('magento_instance_id', '=', self.id)])
@@ -103,4 +132,20 @@ class MagentoInstance(models.Model):
                                                     self.create_sub_category(shop, sub_cat)
         except Exception:
             pass
+        return True
+
+    @api.multi
+    def import_products(self):
+        ProductTemplate = self.env['product.template']
+        response = self.magento_api("/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=type_id& searchCriteria[filterGroups][0][filters][0][value]=simple& searchCriteria[filterGroups][0][filters][0][conditionType]=eq")
+        product_list = json.loads(response.text)
+        for products in product_list['items']:
+            ProductTemplate.sync_product(self, products['sku'])
+        return True
+
+    @api.multi
+    def export_products(self):
+        products = self.env['product.product'].search([('type', '=', 'product')])
+        for product in products:
+            product.export_product()
         return True

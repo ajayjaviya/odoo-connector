@@ -1,0 +1,220 @@
+<odoo>
+    <record id="view_magento_product_attribute_set_group_form" model="ir.ui.view">
+        <field name="name">magento.product.attribute.set.group.form</field>
+        <field name="model">magento.product.attribute.set</field>
+        <field name="arch" type="xml">
+            <form string="Magento Product Attribute Sets">
+                <header>
+                    <button name="update_attribute_set" string="Update Attribute Set" type="object"/>
+                    <button name="export_attribute_set" string="Export Attribute Set" type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="shop_id"/>
+                        </group>
+                        <group>
+                            <field name="sort_order"/>
+                            <field name="entity_type_id"/>
+                            <field name="magento_instance_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_magento_product_attribute_set_group_tree" model="ir.ui.view">
+        <field name="name">magento.product.attribute.set_greoup.tree</field>
+        <field name="model">magento.product.attribute.set</field>
+        <field name="arch" type="xml">
+            <tree string="Magento Product Attribute Sets">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="shop_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_magento_product_attribute_set" model="ir.actions.act_window">
+        <field name="name">Magento Product Attribute Sets</field>
+        <field name="res_model">magento.product.attribute.set</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_magento_product_attributes_form" model="ir.ui.view">
+        <field name="name">magento.product.attributes.form</field>
+        <field name="model">magento.product.attributes</field>
+        <field name="arch" type="xml">
+            <form string="Magento Product Attributes">
+                <sheet>
+                    <group col="4" colspan="4">
+                        <field name="attribute_code"/>
+                        <field name="magento_id"/>
+                        <field name="field_name"/>
+                        <field name="based_on"/>
+                        <field name="frontend_input_id"/>
+                        <field name="frontend_label"/>
+                        <field name="referential_id"/>
+                        <field name="is_searchable"/>
+                        <field name="is_visible"/>
+                        <field name="is_visible_on_front"/>
+                        <field name="is_filterable"/>
+                        <field name="scope"/>
+                        <field name="is_unique"/>
+                        <field name="is_required"/>
+                        <field name="is_user_defined"/>
+                    </group>
+                    <notebook>
+                        <page string='Attribute Options'>
+                            <field name="options">
+                                <tree editable="bottom" string="Attribute Options">
+                                    <field name="attribute_name"/>
+                                    <field name="value"/>
+                                    <field name="label"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_magento_product_attributes_tree" model="ir.ui.view">
+        <field name="name">magento.product.attributes.tree</field>
+        <field name="model">magento.product.attributes</field>
+        <field name="arch" type="xml">
+            <tree string="Magento Product Attributes">
+                <field name="attribute_code" select="1"/>
+                <field name="frontend_label" select="1"/>
+                <field name="is_visible" select="1"/>
+                <field name="is_required" select="1"/>
+                <field name="is_searchable" select="1"/>
+                <field name="is_comparable" select="1"/>
+                <field name="entity_type_id" select="1"/>
+                <field name="group" select="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_magento_product_attributes" model="ir.actions.act_window">
+        <field name="name">Magento Product Attributes</field>
+        <field name="res_model">magento.product.attributes</field>
+        <field name="src_model">magento.product.attributes</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_magento_product_attribute_groups_form" model="ir.ui.view">
+        <field name="name">magento.product.attribute.groups.form</field>
+        <field name="model">magento.product.attribute.groups</field>
+        <field name="arch" type="xml">
+            <form string="Magento Product Attributes Groups">
+                <group>
+                    <field name="attribute_group_name"/>
+                    <field name="attribute_set"/>
+                    <field name="default_id"/>
+                    <field name="sort_order"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_magento_product_attribute_groups_tree" model="ir.ui.view">
+        <field name="name">magento.product.attribute.groups.tree</field>
+        <field name="model">magento.product.attribute.groups</field>
+        <field name="arch" type="xml">
+            <tree string="Magento Product Attribute groups">
+                <field name="attribute_group_name" select="1"/>
+                <field name="attribute_set" select="2"/>
+                <field name="default_id" select="2"/>
+                <field name="sort_order" select="2"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_magento_product_attribute_groups" model="ir.actions.act_window">
+        <field name="name">Magento Product Attribute Groups</field>
+        <field name="res_model">magento.product.attribute.groups</field>
+        <field name="src_model">magento.product.attribute.groups</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_magento_product_attribute_options_form" model="ir.ui.view">
+        <field name="name">magento.product.attribute.options.form</field>
+        <field name="model">magento.product.attribute.options</field>
+        <field name="arch" type="xml">
+            <form string="Magento Product Attribute Options">
+                <group>
+                    <field name="attribute_id"/>
+                    <field name="attribute_name" invisible="True"/>
+                    <field name="label"/>
+                    <field name="value"/>
+                    <field name="referential_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_magento_product_attribute_options_tree" model="ir.ui.view">
+        <field name="name">magento.product.attribute.options.tree</field>
+        <field name="model">magento.product.attribute.options</field>
+        <field name="arch" type="xml">
+            <tree string="Magento Product Attribute Options">
+                <field name="attribute_id"/>
+                <field name="attribute_name" invisible="True"/>
+                <field name="label"/>
+                <field name="value"/>
+                <field name="ipcast"/>
+                <field name="referential_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_magento_product_attribute_options_search" model="ir.ui.view">
+        <field name="name">magento.product.attribute.options.search</field>
+        <field name="model">magento.product.attribute.options</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Search Product Attribute Options">
+                <field name="referential_id"/>
+                <field name="attribute_id"/>
+                <field name="label"/>
+                <field name="value"/>
+                <newline/>
+                <group expand="0" string="Group By...">
+                    <filter string="Magento instance" icon="terp-personal" domain="[]"
+                            context="{'group_by':'referential_id'}"/>
+                    <filter string="Attribute" icon="terp-stock_effects-object-colorize" domain="[]"
+                            context="{'group_by':'attribute_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_magento_product_attribute_options" model="ir.actions.act_window">
+        <field name="name">Magento Product Attribute Options</field>
+        <field name="res_model">magento.product.attribute.options</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_magento_product_attribute_options_search"/>
+        <field name="domain">[('attribute_id','!=',False)]</field>
+    </record>
+
+    <menuitem id="menu_magento_product_attribute_set" name="Attribute Set" parent="menu_magento"
+              action="action_magento_product_attribute_set"/>
+    <menuitem id="menu_magento_product_attribute" name="Attribute" parent="menu_magento"
+              action="action_magento_product_attributes"/>
+    <menuitem id="menu_magento_product_attribute_groups" name="Attribute Group" parent="menu_magento"
+              action="action_magento_product_attribute_groups"/>
+    <menuitem id="menu_magento_product_attribute_option" name="Attribute Option" parent="menu_magento"
+              action="action_magento_product_attribute_options"/>
+</odoo>

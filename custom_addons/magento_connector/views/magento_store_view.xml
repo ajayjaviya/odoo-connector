@@ -41,6 +41,6 @@
 
     <menuitem id="menu_magento_store"
         name="Magento Store"
-        parent="menu_magento_root"
+        parent="menu_magento"
         action="action_magento_store"/>
 </odoo>

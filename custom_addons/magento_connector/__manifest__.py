@@ -7,7 +7,8 @@
  'data': [
      'views/magento_view.xml',
      'views/magento_store_view.xml',
-     'views/product_view.xml'
+     'views/product_view.xml',
+     'views/magento_attribute_view.xml'
  ],
  'installable': True,
  'application': False,

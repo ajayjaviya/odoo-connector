@@ -31,9 +31,12 @@
                             <group colspan="6" col="3">
                                 <button name="import_category" string="Import Categories" type="object"
                                         class="btn-primary"/>
-                                <button name="import_products" string=" Import Product" type="object"
+                                <button name="import_attribute_set" string="Import Attributes Set" type="object" class="btn-primary" />
+                                <button name="import_attribute" string=" Import Product Attributes" type="object" class="btn-primary" />
+                                <button name="import_products" string="Import Product" type="object"
                                         class="btn-primary"/>
-                                <button name="import_image" string=" Import Images" type="object" class="btn-primary"/>
+                                <button name="export_products" string="Export Product" type="object"
+                                        class="btn-primary"/>
                             </group>
                         </page>
                     </notebook>
@@ -61,8 +64,10 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <menuitem id="menu_magento" name="Magento" parent="menu_magento_root"/>
+
     <menuitem id="menu_magento_instance"
               name="Magento Instance"
-              parent="menu_magento_root"
+              parent="menu_magento"
               action="action_magento_instance"/>
 </odoo>
