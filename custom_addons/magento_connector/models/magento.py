@@ -21,8 +21,9 @@ class MagentoInstance(models.Model):
 
     def magento_api(self, url, method="GET", vals=None):
         url = '%s%s' % (self.location, url)
-        headers = {'authorization': 'Bearer %s' % self.access_token}
-        if method == 'POST':
+        headers = {'authorization': 'Bearer %s' % self.access_token,'content-type': "application/json",
+            'cache-control': "no-cache",}
+        if method in ['POST', 'PUT']:
             response = requests.request(method, url, data=json.dumps(vals), headers=headers)
         else:
             response = requests.request(method, url, headers=headers)

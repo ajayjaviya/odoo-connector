@@ -28,11 +28,10 @@
                     </group>
                     <notebook>
                         <page string="Sync Product">
-                            <group colspan="6" col="3">
+                            <group>
                                 <button name="import_category" string="Import Categories" type="object"
                                         class="btn-primary"/>
                                 <button name="import_attribute_set" string="Import Attributes Set" type="object" class="btn-primary" />
-                                <button name="import_attribute" string=" Import Product Attributes" type="object" class="btn-primary" />
                                 <button name="import_products" string="Import Product" type="object"
                                         class="btn-primary"/>
                                 <button name="export_products" string="Export Product" type="object"
