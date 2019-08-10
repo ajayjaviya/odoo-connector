@@ -1,4 +1,4 @@
-======================
+
 Magento Odoo Connector
 ======================
 
@@ -11,7 +11,7 @@ Magento 2 Odoo Connector is build using Magento 2 Rest API it Include Below Feat
 * Export the products, stock quantities and image / media
 * Update the products, stock quantities and image / media
 
-==========
+
 Technical:
 ==========
 
@@ -19,7 +19,6 @@ Technical:
 * Support Magento 2.x+
 * Tested with odoo 11 and Magento 2.3
 
-==============
 Configuration:
 ==============
 *Create Access Token in Magento
@@ -32,7 +31,6 @@ Configuration:
         - eg. Location http://m2.com
         - Access Token : Add access token generated form Magento
 
-============
 Aussumption:
 ============
 
