@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .common import MagentoInstanceTest
 
+
 class TestMagentoExport(MagentoInstanceTest):
     def test_magento_export_product(self):
         self.uom_unit = self.env.ref('product.product_uom_unit')

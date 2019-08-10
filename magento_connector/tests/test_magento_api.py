@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .common import MagentoInstanceTest
 
+
 class TestMagentoAPI(MagentoInstanceTest):
     def test_magento_api(self):
         """ Test the Magento API

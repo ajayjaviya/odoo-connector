@@ -3,11 +3,11 @@
     <record id="view_product_product_category_form_inherit" model="ir.ui.view">
         <field name="name">product.product.category.form.view.inherit</field>
         <field name="model">product.category</field>
-        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="inherit_id" ref="product.product_category_form_view"/>
         <field name="arch" type="xml">
             <field name='parent_id' position="after">
-                <field name="magento_id" />
-                <field name="magento_instance_id" />
+                <field name="magento_id"/>
+                <field name="magento_instance_id"/>
             </field>
         </field>
     </record>
@@ -16,20 +16,32 @@
     <record id="view_product_template_only_form_inherit" model="ir.ui.view">
         <field name="name">product.template.product.form.inherit</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="before">
-                <div attrs="{'invisible': [('magento_sync_status', '!=', 'to_export')]}" class="alert alert-warning text-center">This Product is added in <strong>Queue.</strong> It will exported automatically in Magento.</div>
-                <div attrs="{'invisible': [('magento_sync_status', '!=', 'exported')]}" class="alert alert-success text-center">This Product is <strong>Exported </strong> to Magento Succesfully.</div>
-                <div attrs="{'invisible': [('magento_sync_status', '!=', 'to_update')]}" class="alert alert-warning text-center">This Product is added in <strong>Queue.</strong> It will updated automatically in Magento.</div>
-                <div attrs="{'invisible': [('magento_sync_status', '!=', 'updated')]}" class="alert alert-success text-center">This Product is <strong>Updated </strong> to Magento Succesfully.</div>
+                <div attrs="{'invisible': [('magento_sync_status', '!=', 'to_export')]}"
+                     class="alert alert-warning text-center">This Product is added in <strong>Queue.</strong> It will
+                    exported automatically in Magento.
+                </div>
+                <div attrs="{'invisible': [('magento_sync_status', '!=', 'exported')]}"
+                     class="alert alert-success text-center">This Product is <strong>Exported</strong> to Magento
+                    Succesfully.
+                </div>
+                <div attrs="{'invisible': [('magento_sync_status', '!=', 'to_update')]}"
+                     class="alert alert-warning text-center">This Product is added in <strong>Queue.</strong> It will
+                    updated automatically in Magento.
+                </div>
+                <div attrs="{'invisible': [('magento_sync_status', '!=', 'updated')]}"
+                     class="alert alert-success text-center">This Product is <strong>Updated</strong> to Magento
+                    Succesfully.
+                </div>
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Magento" name="magento">
                     <group>
-                        <field name="magento_store_id" />
-                        <field name="product_type" />
-                        <field name="sync_with_mangento" />
+                        <field name="magento_store_id"/>
+                        <field name="product_type"/>
+                        <field name="sync_with_mangento"/>
                         <field name="attribute_set_id" required="1"/>
                         <field name="visibility"/>
                         <field name="magento_product_status"/>
@@ -51,14 +63,19 @@
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Click to define a new product.
-            </p><p>
-                You must define a product for everything you sell, whether it's a physical product, a consumable or a service you offer to customers.
-            </p><p>
-                The product form contains information to simplify the sale process: price, notes in the quotation, accounting data, procurement methods, etc.
+            </p>
+            <p>
+                You must define a product for everything you sell, whether it's a physical product, a consumable or a
+                service you offer to customers.
+            </p>
+            <p>
+                The product form contains information to simplify the sale process: price, notes in the quotation,
+                accounting data, procurement methods, etc.
             </p>
         </field>
     </record>
 
     <menuitem id="menu_magento_catelog" name="Catelog" parent="menu_magento_root"/>
-    <menuitem id="menu_magento_product" name="Product" parent="menu_magento_catelog" action="action_product_template_magento"/>
+    <menuitem id="menu_magento_product" name="Product" parent="menu_magento_catelog"
+              action="action_product_template_magento"/>
 </odoo>

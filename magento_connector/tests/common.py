@@ -13,5 +13,5 @@ class MagentoInstanceTest(SavepointCase):
             {'name': 'Test Magento',
              'location': 'http://m2.com',
              'access_token': 'n1axpdbd8jf4ctyx9q0x9y3v6t3e0ngi',
-            }
+             }
         )

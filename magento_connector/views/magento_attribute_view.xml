@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_magento_product_attribute_set_group_form" model="ir.ui.view">
         <field name="name">magento.product.attribute.set.group.form</field>

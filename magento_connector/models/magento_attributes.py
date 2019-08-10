@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, api, models, _
+from odoo import fields, models
+
 
 class MagentoProductAttributeSet(models.Model):
     _name = "magento.product.attribute.set"

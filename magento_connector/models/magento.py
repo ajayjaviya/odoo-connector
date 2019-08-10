@@ -27,8 +27,8 @@ class MagentoInstance(models.Model):
         :param vals: required when method is POST or PUT
         """
         url = '%s%s' % (self.location, url)
-        headers = {'authorization': 'Bearer %s' % self.access_token,'content-type': "application/json",
-            'cache-control': "no-cache",}
+        headers = {'authorization': 'Bearer %s' % self.access_token, 'content-type': "application/json",
+                   'cache-control': "no-cache", }
         if method in ['POST', 'PUT']:
             response = requests.request(method, url, data=json.dumps(vals), headers=headers)
         else:
@@ -158,7 +158,8 @@ class MagentoInstance(models.Model):
     def import_products(self):
         """ Import All Products from magento."""
         ProductTemplate = self.env['product.template']
-        response = self.magento_api("/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=type_id& searchCriteria[filterGroups][0][filters][0][value]=simple& searchCriteria[filterGroups][0][filters][0][conditionType]=eq")
+        response = self.magento_api(
+            "/rest/V1/products?searchCriteria[filterGroups][0][filters][0][field]=type_id& searchCriteria[filterGroups][0][filters][0][value]=simple& searchCriteria[filterGroups][0][filters][0][conditionType]=eq")
         product_list = json.loads(response.text)
         for products in product_list['items']:
             ProductTemplate.sync_product(self, products['sku'])

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="view_magento_instance_store_form" model="ir.ui.view">
         <field name="name">Magento Store</field>
@@ -40,7 +41,7 @@
     </record>
 
     <menuitem id="menu_magento_store"
-        name="Magento Store"
-        parent="menu_magento"
-        action="action_magento_store"/>
+              name="Magento Store"
+              parent="menu_magento"
+              action="action_magento_store"/>
 </odoo>

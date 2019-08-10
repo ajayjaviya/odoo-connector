@@ -5,7 +5,7 @@ import io
 import json
 from PIL import Image
 
-from odoo import models, fields, api, _
+from odoo import models, fields, api
 from odoo.tools.mimetypes import guess_mimetype
 from urllib.request import urlopen
 
@@ -40,7 +40,9 @@ class ProductTemplate(models.Model):
     magento_product_status = fields.Selection([('1', 'Enabled'), ('2', 'Disabled')], 'Status', default='1')
     is_magento_product = fields.Boolean()
     # Magento Sync Status is used to identified the next operation to do
-    magento_sync_status = fields.Selection([('to_export', 'To Export'), ('to_update', 'To Update'), ('exported', 'Exported'), ('updated', 'Updated'), ('imported', 'Imported')], default="to_export")
+    magento_sync_status = fields.Selection(
+        [('to_export', 'To Export'), ('to_update', 'To Update'), ('exported', 'Exported'), ('updated', 'Updated'),
+         ('imported', 'Imported')], default="to_export")
 
     @api.multi
     def sync_product(self, instance, sku):
@@ -130,6 +132,7 @@ class ProductTemplate(models.Model):
 
         return super(ProductTemplate, self).write(vals)
 
+
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
@@ -153,11 +156,11 @@ class ProductProduct(models.Model):
             custom_options.append({"attributeCode": 'category_ids', "value": categ})
         vals = {
             "product": {
-            "name": str(self.name),
-            "price": self.list_price,
-            'weight': self.weight,
-            'status': int(self.magento_product_status),
-            'visibility': int(self.visibility),
+                "name": str(self.name),
+                "price": self.list_price,
+                'weight': self.weight,
+                'status': int(self.magento_product_status),
+                'visibility': int(self.visibility),
             }
         }
         url = "%s%s" % ("/rest/V1/products/", self.default_code)
@@ -242,6 +245,7 @@ class ProductProduct(models.Model):
         url = "%s%s%s" % ("/rest/V1/products/", self.default_code, "/media")
         response = instance.magento_api(url, 'POST', vals)
         return response
+
 
 class ProductCategory(models.Model):
     _inherit = 'product.category'
