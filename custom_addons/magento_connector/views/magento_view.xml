@@ -29,13 +29,17 @@
                     <notebook>
                         <page string="Sync Product">
                             <group>
-                                <button name="import_category" string="Import Categories" type="object"
-                                        class="btn-primary"/>
-                                <button name="import_attribute_set" string="Import Attributes Set" type="object" class="btn-primary" />
-                                <button name="import_products" string="Import Product" type="object"
-                                        class="btn-primary"/>
-                                <button name="export_products" string="Export Product" type="object"
-                                        class="btn-primary"/>
+                                <group>
+                                    <button name="import_category" string="Import Categories" type="object"
+                                            class="btn-primary"/>
+                                    <button name="import_attribute_set" string="Import Attributes Set" type="object" class="btn-primary" />
+                                </group>
+                                <group>
+                                    <button name="import_products" string="Import Product" type="object"
+                                            class="btn-primary"/>
+                                    <button name="export_products" string="Export Product" type="object"
+                                            class="btn-primary"/>
+                                </group>
                             </group>
                         </page>
                     </notebook>
